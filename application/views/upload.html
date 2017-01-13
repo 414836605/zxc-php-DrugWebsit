@@ -1,0 +1,114 @@
+<style>
+#main .my-label{
+	font-size: 15px;
+	padding: 5px;
+	background-color: #D3EFF9;
+	color: #3B83D5;
+}
+#main .maincenter{
+	margin: 30px 50px 0px 50px;
+	min-height: 760px;
+}
+#main .mainleft{
+	border: #99D9EA solid 2px;
+	padding-top: 20px;
+}
+#main .mainright{
+	border: #99D9EA solid 2px;
+	padding: 0;
+}
+#main h3{
+	margin: 0;
+	text-align: center;
+	background-color: #99D9EA;
+}
+.mainright .mr-container{
+	padding: 30px;
+}
+
+</style>
+<link href="<?php echo base_url('style/upload/css/fileinput.min.css')?>" media="all" rel="stylesheet" type="text/css" />
+<script src="<?php echo base_url('style/upload/js/fileinput.min.js')?>"></script>
+<script src="<?php echo base_url('style/upload/js/fileinput_locale_zh.js')?>"></script>  
+<!-- 主体开始 -->
+<div id="main">
+	<div class="maincenter clearfix">
+		<div class="container-fulid">
+			<form class="form-horizontal" role="form">
+				<div class="col-xs-4 mainleft">
+					<div class="form-group">
+						<div class=" col-xs-4">
+							<label for="name" class="control-label my-label">商品编号</label>
+						</div>
+						<div class="col-xs-7">
+							<input class="form-control" value="<?=$selected['spbh']?>" disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class=" col-xs-4">
+							<label for="name" class="control-label my-label">商品名称</label>
+						</div>
+						<div class="col-xs-7">
+							<input class="form-control" value="<?=$selected['spmch']?>" disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class=" col-xs-4">
+							<label for="name" class="control-label my-label">商品规格</label>
+						</div>
+						<div class="col-xs-7">
+							<input class="form-control uneditable-input" value="<?=$selected['shpgg']?>"  disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class=" col-xs-4">
+							<label for="name" class="control-label my-label">生产厂家</label>
+						</div>
+						<div class="col-xs-7">
+							<input class="form-control uneditable-input" value="<?=$selected['shengccj']?>" disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-4">
+							<label for="name" class="control-label my-label">单位</label>
+						</div>
+						<div class="col-xs-7">
+							<input class="form-control uneditable-input" value="<?=$selected['dw']?>" disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-4">
+							<label for="name" class="control-label my-label">商品批号</label>
+						</div>
+						<div class="col-xs-7">
+							<input class="form-control uneditable-input" value="<?=$selected['pihao']?>" disabled/>
+						</div>
+					</div>
+
+				</div><!-- end(mainleft) -->
+			</form>
+
+			<div class="col-xs-offset-1 col-xs-6 mainright">
+				<h3>上传图片</h3>
+				<div id="upl" class="mr-container">
+				    <form enctype="multipart/form-data">
+				        <div class="form-group">
+				            <input id="file" class="file" type="file" multiple data-preview-file-type="any" data-upload-url="<?php echo '192.168.1.169/index.php/upload/do_upload'.'/'.$id?>" >
+				        </div>
+				    </form>
+				</div>
+			</div><!-- end(mainright) -->
+
+		</div>
+	</div><!-- end(maincenter) -->
+</div>
+<!-- 主体结束 -->
+<script>
+function searchAttr(typeid){
+    var href = "<?php echo site_url('home/upload'); ?>" + "/" + typeid;
+    // alert(href);
+    window.location.href = href ;
+  }
+</script>
+</body>
+</html>

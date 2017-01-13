@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CH">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>商品管理平台登录</title>
+<link rel="stylesheet" href="<?php echo base_url('style/css/bootstrap.min.css');?>"/>
+<script type="text/javascript" src="<?php echo base_url('style/js/jquery.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('style/js/bootstrap.min.js');?>"></script>
+<style>
+body{
+	background-color: #CBE7EE;
+}
+.box{
+	width: 500px;
+	background-color: #fff;
+	margin-top: 30px;
+	padding-bottom: 30px;
+}
+.box img.logo{
+	width: 500px;
+}
+.box h3{
+	text-align: center;
+}
+.box form{
+	margin-top: 20px;
+}
+</style>
+</head>
+
+
+<body>
+	<div class="box center-block">
+		<img class="logo" src="<?=base_url('style/img/logo.jpg')?>">
+		<h3>商品管理平台登录</h3>
+		<form class="form-horizontal" role="form" method="post" action="<?php echo site_url('admin/signin');?>">
+			<div class="form-group">
+				<div class="col-xs-offset-1 col-xs-3">
+					<label class="control-label pull-right">用户名</label>
+				</div>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="name" placeholder="请输入用户名"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-offset-1 col-xs-3">
+					<label class="control-label pull-right">密码</label>
+				</div>
+				<div class="col-xs-7">
+					<input type="password" class="form-control" id="password" placeholder="请输入密码"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-12">
+					<input type="submit" class="btn btn-info center-block" value="登录"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+<script>
+$(function(){
+	$("form").submit(function(event){
+    	event.preventDefault();
+    	$.ajax({
+			type:"POST",
+			url:"<?php echo site_url('admin/signin');?>",
+			data:{
+				'name':$('form input').eq(0).val(),
+				'password':$('form input').eq(1).val()
+			},
+			dataType:"html",
+			success:function(res){
+				if(res == 'ok'){
+					window.location.href="<?php echo site_url('home/index');?>";
+				}else{
+					alert(res);
+				}
+			}
+		});
+	});
+});
+</script>
+</html>

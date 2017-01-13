@@ -1,0 +1,83 @@
+<style>
+#main .my-label{
+	font-size: 20px;
+	float: right;
+	padding: 0px;
+}
+#main .maintop{
+	padding-top: 30px;
+}
+#main .form-group{
+	margin: 0;
+}
+.selectbut{
+	border-radius: 0;
+	background-color: #FFF200;
+	color: #000;
+}
+.uploadbut{
+	float: right;
+	margin-right: 50px;
+	border-radius: 0;
+	background-color: #00A2E8;
+	color: #fff;
+}
+#main .maincenter{
+	margin: 30px 50px 0px 50px;
+}
+</style>
+<!-- 主体开始 -->
+<div id="main">
+	<div class="maintop">
+		<form class="form-horizontal" role="form">
+			<div style="padding-bottom:20px;">
+				<h3 style="margin:0px 0px 0px 50px; float:left;">管理员管理</h3>
+		    	<a href="<?php echo site_url('home/addmanager');?>" class="btn btn-default uploadbut pull-right">增加管理员</a>
+			</div>
+		</form>
+	</div><!-- end(maintop) -->
+	<div class="maincenter">
+		<table class="table table-bordered">
+			<tr class="info">
+				<th>管理员名称</th>
+				<th>权限</th>
+				<th>删除</th>
+			</tr>
+<?php foreach($admins as $k => $v):?>
+			<tr>
+				<td><?=$v['name']?></td>
+				<td><?=$v['permission']?></td>
+				<td><button data="<?=$k?>" class="btn btn-sm btn-info center-block delete"><?=$k?>删除</button></td>
+			</tr>
+<?php endforeach;?>
+		</table>
+	</div><!-- end(maincenter) -->
+
+</div>
+<!-- 主体结束 -->
+<script>
+$(function(){
+	$('.delete').click(function(){
+		var sel = $(this).attr('data');
+		var mes = confirm("确定删除");
+		if(mes == true){
+			$.ajax({
+				type:"POST",
+				url:"<?php echo site_url('admin/delmanager');?>"+"/"+sel,
+				data:{},
+				dataType:"html",
+				success:function(res){
+					if(res == 'ok'){
+						alert('删除成功');
+						window.location.href="<?php echo site_url('home/manage');?>";
+					}else{
+						alert(res);
+					}
+				}
+			});
+		}
+	});
+});
+</script>
+</body>
+</html>

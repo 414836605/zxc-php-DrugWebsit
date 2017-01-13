@@ -1,0 +1,87 @@
+<style>
+#main .my-label{
+	font-size: 20px;
+	padding: 0px;
+}
+#main .maintop{
+	padding-top: 30px;
+}
+#main .form-group{
+	margin: 0;
+}
+.selectbut{
+	border-radius: 0;
+	background-color: #FFF200;
+	color: #000;
+}
+.uploadbut{
+	float: right;
+	margin-right: 50px;
+	border-radius: 0;
+	background-color: #00A2E8;
+	color: #fff;
+}
+#main .maincenter{
+	margin: 30px 50px 0px 50px;
+}
+</style>
+<!-- 主体开始 -->
+<div id="main">
+	<div class="maintop">
+		<form action="<?php echo site_url('home/index')?>" class="form-horizontal" role="form" method="post">
+			<div class="form-group">
+			    <div class="col-xs-offset-1 col-xs-10">
+			    	<label id="l1" for="name" class="control-label my-label">商品信息</label>
+			    	<input id="like" type="text" class="form-control" name="like" placeholder="请输入商品信息">
+					<label id="l2" for="name" class="control-label my-label">批号</label>
+				    <input id="like2" type="text" class="form-control" name="like2" placeholder="请输入批号">
+					<input id="fo1" type="submit" class="btn btn-default selectbut" value="查询">
+				</div>
+			</div>
+		</form>
+	</div><!-- end(maintop) -->
+	<div class="maincenter">
+		<table class="table table-bordered">
+			<tr class="info">
+				<th>商品编号</th>
+				<th>商品名称</th>
+				<th>商品规格</th>
+				<th>生产厂家</th>
+				<th>单位</th>
+				<th>商品批号</th>
+				<th>下载</th>
+			</tr>
+<?php foreach($goods as $good):?>
+			<tr>
+				<td><?=$good['spbh']?></td>
+				<td><?=$good['spmch']?></td>
+				<td><?=$good['shpgg']?></td>
+				<td><?=$good['shengccj']?></td>
+				<td><?=$good['dw']?></td>
+				<td><?=$good['pihao']?></td>
+				<td>
+					<a href="<?php echo site_url('download/do_download').'/'.$good['spid'];?>" class="btn btn-sm btn-info">下载</a>
+					<a href="<?php echo site_url('home/upload').'/'.$good['spid'];?>" class="btn btn-sm btn-success upload">上传</a>
+				</td>
+			</tr>
+<?php endforeach;?>
+		</table>
+		<nav>
+			<?=$page?>
+		</nav>
+	</div><!-- end(maincenter) -->
+</div>
+<!-- 主体结束 -->
+<script type="text/javascript">
+$(function(){
+	var permission = <?php echo $permission?>;
+	$('#like').val("<?php echo $like?>");
+	$('#like2').val("<?php echo $like2?>");
+	if(permission != 0 && permission != 1){
+		$('.upload').hide();
+	}
+});
+</script>
+
+</body>
+</html>

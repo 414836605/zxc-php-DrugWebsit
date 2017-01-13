@@ -1,0 +1,83 @@
+<style>
+body{
+	background-color: #CBE7EE;
+}
+.box{
+	width: 500px;
+	background-color: #00A2E8;
+	margin-top: 150px;
+	padding: 50px;
+}
+.box h3{
+	text-align: center;
+}
+.box form{
+	margin-top: 20px;
+}
+</style>
+<div class="box center-block">
+	<h3>商品管理平台登录</h3>
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<div class="col-xs-offset-1 col-xs-3">
+				<label class="control-label pull-right">用户名</label>
+			</div>
+			<div class="col-xs-7">
+				<input type="text" class="form-control" id="name" placeholder="请输入用户名">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-offset-1 col-xs-3">
+				<label class="control-label pull-right">密码</label>
+			</div>
+			<div class="col-xs-7">
+				<input type="password" class="form-control" id="password" placeholder="请输入密码">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-offset-1 col-xs-3">
+				<label class="control-label pull-right">权限</label>
+			</div>
+			<div class="col-xs-7">
+				<input type="password" class="form-control" id="password" placeholder="请输入权限">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-offset-2 col-xs-10">
+				<p>0:超级管理员。1:上传下载。2:下载</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-12">
+				<button type="submit" class="btn btn-default center-block">增加管理员</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+$(function(){
+	$("form").submit(function(e){
+    	e.preventDefault();
+    	$.ajax({
+			type:"POST",
+			url:"<?php echo site_url('admin/addmanager');?>",
+			data:{
+				'name':$('form input').eq(0).val(),
+				'password':$('form input').eq(1).val(),
+				'permission':$('form input').eq(2).val()
+			},
+			dataType:"html",
+			success:function(res){
+				if(res == 'ok'){
+					alert('添加成功');
+					window.location.href="<?php echo site_url('home/manage');?>";
+				}else{
+					alert(res);
+				}
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>

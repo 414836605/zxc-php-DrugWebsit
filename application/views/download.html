@@ -1,0 +1,130 @@
+<style>
+#main .my-label{
+	font-size: 15px;
+	padding: 5px;
+	background-color: #D3EFF9;
+	color: #3B83D5;
+}
+#main .maincenter{
+	margin: 30px 50px 0px 50px;
+}
+#main .mainleft{
+	border: #99D9EA solid 2px;
+	padding-top: 20px;
+}
+#main .mainright{
+	border: #99D9EA solid 2px;
+	padding: 0;
+}
+#main h3{
+	margin: 0;
+	text-align: center;
+	background-color: #99D9EA;
+}
+.mainright .mr-container{
+	padding: 30px;
+}
+.button-blue{
+	display: block;
+	border-radius: 0;
+	background-color: #00A2E8;
+	color: #fff;
+}
+.mainright textarea{
+	display: block;
+	width: 100%;
+	height: 200px;
+	margin-bottom: 10px;
+}
+.mainright label{
+	display: block;
+	margin-top: 10px;
+}
+</style>
+<!-- 主体开始 -->
+
+<div id="main">
+	<?php var_dump($selected['spmch'])?>
+	<div class="maincenter">
+		<div class="container-fulid">
+			<div class="col-xs-4 mainleft">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-4">
+							<label for="name" class="control-label my-label">商品编号</label>
+						</div>
+						<div class="col-xs-4">
+							<select class="form-control" onchange="searchAttr(this.value)">
+							<?php foreach($goods as $good):?>
+							  <option value="<?=$good['spid']?>" <?php echo $good['spid'] == $id ? "selected":"" ?>><?=$good['spbh']?></option>
+							<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-4">
+							<label for="name" class="control-label my-label">商品名称</label>
+						</div>
+						<div class="col-xs-4">
+							<input class="form-control" value="<?=$selected['spmch']?>" disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-4">
+							<label for="name" class="control-label my-label">商品规格</label>
+						</div>
+						<div class="col-xs-4">
+							<input class="form-control uneditable-input" value="<?=$selected['shpgg']?>"  disabled/>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						
+						<div class="col-xs-offset-2 col-xs-4">
+							<label for="name" class="control-label my-label">生产厂家</label>
+						</div>
+						<div class="col-xs-4">
+							<input class="form-control uneditable-input" value="<?=$selected['shengccj']?>" disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						
+						<div class="col-xs-offset-2 col-xs-4">
+							<label for="name" class="control-label my-label">单位</label>
+						</div>
+						<div class="col-xs-4">
+							<input class="form-control uneditable-input" value="<?=$selected['dw']?>" disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-4">
+							<label for="name" class="control-label my-label">商品批号</label>
+						</div>
+						<div class="col-xs-4">
+							<input class="form-control uneditable-input" value="<?=$selected['spbh']?>" disabled/>
+						</div>
+					</div>
+				</form>
+			</div><!-- end(mainleft) -->
+			<div class="col-xs-offset-1 col-xs-6 mainright">
+				<h3>下载图片</h3>
+				<div class="mr-container">
+					<button id="download" class="btn btn-default button-blue">下载</button>
+				</div>
+			</div><!-- end(mainright) -->
+		</div>
+	</div><!-- end(maincenter) -->
+<script>
+function searchAttr(typeid){
+    var href = "<?php echo site_url('home/download'); ?>" + "/" + typeid;
+    // alert(href);
+    window.location.href = href ;
+  }
+	$("#download").click(function(){
+    	window.location.href="<?php echo site_url('download/do_download').'/'.$id;?>";
+	});
+</script>
+</div>
+<!-- 主体结束 -->
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>提示信息</title>
+	<style type="text/css">
+		body{
+			background-color: #CBE7EE;
+		}
+		.box{
+			width: 500px;
+			height: 300px;
+			background-color: #00A2E8;
+			margin: 150px auto;
+			padding: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div style="height:230px; background-color:#ccc; padding:10px 20px;">
+			<h3><?=$message;?></h3>
+		</div>
+		<div>
+			<a href="<?=$url;?>">点击返回</a>
+		</div>
+	</div>
+</body>
+</html>
